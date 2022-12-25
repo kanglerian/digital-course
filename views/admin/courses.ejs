@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <style>
+    table,
+    tr,
+    th,
+    td {
+      border: 1px solid black;
+      padding: 3px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <a href="/">kembali</a>
+  </div>
+  <h1>
+    <%= title %>
+  </h1>
+  <p>Selamat datang, <%= user.fullName %>
+  </p>
+  <p>Ini daftar kelas yang ada di Digital Course:</p>
+  <button onclick="toggle()">Tambah</button>
+  <div style="margin-top: 5px;display: none" id="add-form">
+    <form action="/dashboard/courses" method="POST">
+      <input type="text" name="nameCourse" placeholder="Name Course in here.." />
+      <input type="text" name="price" placeholder="Rp0" />
+      <select name="status">
+        <option>Pilih</option>
+        <option value="0">Tidak aktif</option>
+        <option value="1">Aktif</option>
+      </select>
+      <button type="submit">Simpan</button>
+    </form>
+  </div>
+  <div style="margin-top: 10px">
+    <% if(data.length> 0) { %>
+      <table>
+        <tr>
+          <th>No.</th>
+          <th>Name Course</th>
+          <th>Price</th>
+          <th>Status</th>
+          <th>#</th>
+        </tr>
+        <% data.forEach((da, i)=> { %>
+          <tr>
+            <td>
+              <%= i+1 %>
+            </td>
+            <form action="/dashboard/courses/<%= da.id %>?_method=PATCH" method="POST">
+            <td>
+              <span id="nameCourseLabel<%= da.id %>" style="display:block"><%= da.nameCourse %></span>
+              <input type="text" name="nameCourse" id="nameCourse<%= da.id %>" style="display:none" value="<%= da.nameCourse %>"></input>
+            </td>
+            <td>
+              <span id="priceCourseLabel<%= da.id %>" style="display:block">Rp<%= da.price.toLocaleString('id-ID') %></span>
+              <input type="text" name="price" id="priceCourse<%= da.id %>" style="display:none" value="<%= da.price %>"></input>
+            </td>
+            <td>
+              <span id="statusCourseLabel<%= da.id %>" style="display:block">
+                <%= da.status == true ? 'aktif' : 'tidak aktif' %>
+              </span>
+              <select name="status" style="display:none" id="statusCourse<%= da.id %>">
+                <option value="<%= da.status %>"><%= da.status == true ? 'aktif' : 'tidak aktif' %></option>
+                <option value="<%= da.status == true ? 0 : 1 %>"><%= da.status == true ? 'tidak aktif' : 'aktif' %></option>
+              </select>
+            </td>
+            <td>
+              <button type="submit" style="display:none" id="buttonCourse<%= da.id %>">Simpan</button>
+            </form>
+              <button type="button" onclick="toggleEdit(`<%= da.id %>`)">Edit</button>
+              <form onsubmit="return confirm(`Apakah kamu yakin akan menghapus kelas <%= da.nameCourse %>?`)"
+                method="POST" action="/dashboard/courses?_method=DELETE" style="display:inline">
+                <input type="hidden" name="id" value="<%= da.id %>">
+                <button type="submit">hapus</but>
+              </form>
+            </td>
+          </tr>
+          <% }); %>
+      </table>
+      <% } %>
+  </div>
+  <script>
+    const toggle = () => {
+      let formAdd = document.getElementById('add-form');
+      if(formAdd.style.display == "block"){
+        formAdd.style.display = "none";
+      }else{
+        formAdd.style.display = "block";
+      }
+    }
+    const toggleEdit = (da) => {
+      let nameCourse = document.getElementById(`nameCourse${da}`);
+      let nameCourseLabel = document.getElementById(`nameCourseLabel${da}`);
+      let priceCourse = document.getElementById(`priceCourse${da}`);
+      let priceCourseLabel = document.getElementById(`priceCourseLabel${da}`);
+      let statusCourse = document.getElementById(`statusCourse${da}`);
+      let statusCourseLabel = document.getElementById(`statusCourseLabel${da}`);
+      let buttonCourse = document.getElementById(`buttonCourse${da}`);
+      if(nameCourse.style.display == "none"){
+        nameCourse.style.display = "block";
+        nameCourseLabel.style.display = "none";
+        priceCourse.style.display = "block";
+        priceCourseLabel.style.display = "none";
+        statusCourse.style.display = "block";
+        statusCourseLabel.style.display = "none";
+        buttonCourse.style.display = "block";
+      }else{
+        nameCourse.style.display = "none";
+        nameCourseLabel.style.display = "block";
+        priceCourse.style.display = "none";
+        priceCourseLabel.style.display = "block";
+        statusCourse.style.display = "none";
+        statusCourseLabel.style.display = "block";
+        buttonCourse.style.display = "none";
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <style>
+    table,
+    tr,
+    th,
+    td {
+      border: 1px solid black;
+      padding: 3px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <a href="/">kembali</a>
+  </div>
+  <h1>
+    <%= title %>
+  </h1>
+  <p>Selamat datang, <%= user.fullName %>
+  </p>
+  <p>Ini daftar pengguna yang ada di Digital Course:</p>
+  <button onclick="toggle()">Tambah</button>
+  <div style="margin-top: 5px;display: none" id="add-form">
+    <form action="/dashboard/users" method="POST">
+      <input type="text" name="fullName" placeholder="Fullname in here.." />
+      <input type="email" name="email" placeholder="Email in here.." />
+      <input type="password" name="password" placeholder="Password in here.." />
+      <select name="status">
+        <option>Pilih</option>
+        <option value="0">Siswa</option>
+        <option value="1">Admin</option>
+      </select>
+      <button type="submit">Simpan</button>
+    </form>
+  </div>
+  <div style="margin-top: 10px">
+    <% if(data.length> 0) { %>
+      <table>
+        <tr>
+          <th>No.</th>
+          <th>Fullname</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Status</th>
+          <th>#</th>
+        </tr>
+        <% data.forEach((da, i)=> { %>
+          <tr>
+            <td>
+              <%= i+1 %>
+            </td>
+            <form action="/dashboard/users/<%= da.id %>?_method=PATCH" method="POST">
+            <td>
+              <span id="fullNameLabel<%= da.id %>" style="display:block"><%= da.fullName %></span>
+              <input type="text" name="fullName" id="fullName<%= da.id %>" style="display:none" value="<%= da.fullName %>"></input>
+            </td>
+            <td>
+              <span id="emailLabel<%= da.id %>" style="display:block"><%= da.email %></span>
+              <input type="email" name="email" id="email<%= da.id %>" style="display:none" value="<%= da.email %>"></input>
+            </td>
+            <td>
+              <span id="passwordLabel<%= da.id %>" style="display:block"><%= da.password %></span>
+              <input type="password" name="password" id="password<%= da.id %>" style="display:none" value="<%= da.password %>"></input>
+            </td>
+            <td>
+              <span id="statusLabel<%= da.id %>" style="display:block">
+                <%= da.status == true ? 'admin' : 'siswa' %>
+              </span>
+              <select name="status" style="display:none" id="status<%= da.id %>">
+                <option value="<%= da.status %>"><%= da.status == true ? 'admin' : 'siswa' %></option>
+                <option value="<%= da.status == true ? 0 : 1 %>"><%= da.status == true ? 'siswa' : 'admin' %></option>
+              </select>
+            </td>
+            <td>
+              <button type="submit" style="display:none" id="buttonUser<%= da.id %>">Simpan</button>
+            </form>
+              <button type="button" onclick="toggleEdit(`<%= da.id %>`)">Edit</button>
+              <form onsubmit="return confirm(`Apakah kamu yakin akan menghapus pengguna <%= da.fullName %>?`)"
+                method="POST" action="/dashboard/users?_method=DELETE" style="display:inline">
+                <input type="hidden" name="id" value="<%= da.id %>">
+                <button type="submit">hapus</but>
+              </form>
+            </td>
+          </tr>
+          <% }); %>
+      </table>
+      <% } %>
+  </div>
+  <script>
+    const toggle = () => {
+      let formAdd = document.getElementById('add-form');
+      if(formAdd.style.display == "block"){
+        formAdd.style.display = "none";
+      }else{
+        formAdd.style.display = "block";
+      }
+    }
+    const toggleEdit = (da) => {
+      let fullName = document.getElementById(`fullName${da}`);
+      let fullNameLabel = document.getElementById(`fullNameLabel${da}`);
+      let email = document.getElementById(`email${da}`);
+      let emailLabel = document.getElementById(`emailLabel${da}`);
+      let password = document.getElementById(`password${da}`);
+      let passwordLabel = document.getElementById(`passwordLabel${da}`);
+      let status = document.getElementById(`status${da}`);
+      let statusLabel = document.getElementById(`statusLabel${da}`);
+      let buttonUser = document.getElementById(`buttonUser${da}`);
+      if(fullName.style.display == "none"){
+        fullName.style.display = "block";
+        fullNameLabel.style.display = "none";
+        email.style.display = "block";
+        emailLabel.style.display = "none";
+        password.style.display = "block";
+        passwordLabel.style.display = "none";
+        status.style.display = "block";
+        statusLabel.style.display = "none";
+        buttonUser.style.display = "block";
+      }else{
+        fullName.style.display = "none";
+        fullNameLabel.style.display = "block";
+        email.style.display = "none";
+        emailLabel.style.display = "block";
+        password.style.display = "none";
+        passwordLabel.style.display = "block";
+        status.style.display = "none";
+        statusLabel.style.display = "block";
+        buttonUser.style.display = "none";
+      }
+    }
+  </script>
+</body>
+
+</html>

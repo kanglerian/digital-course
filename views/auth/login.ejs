@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div>
+      <h1><a href="/" style="text-decoration: none;color:black"><%= title %></a></h1>
+      <p>Welcome to <%= title %>, masuk disini:</p>
+      <div>
+        <form action="/auth/login" method="POST">
+          <div style="margin-bottom:5px">
+            <label>Email:</label>
+            <input type="email" name="email" placeholder="Your email in here.." required>
+          </div>
+          <div style="margin-bottom:10px">
+            <label>Password:</label>
+            <input type="password" name="password" placeholder="Your password in here.." required>
+          </div>
+          <button type="submit" style="margin-right:10px">Masuk</button><a href="/auth/register">Belum punya akun</a>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
