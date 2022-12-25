@@ -59,7 +59,7 @@
             </td>
             <form action="/dashboard/users/<%= da.id %>?_method=PATCH" method="POST">
             <td>
-              <span id="fullNameLabel<%= da.id %>" style="display:block"><%= da.fullName %></span>
+              <span id="fullNameLabel<%= da.id %>" style="display:block"><a href="/dashboard/users/detail/<%= da.id %>" style="text-decoration: none;color:black"><%= da.fullName %></a></span>
               <input type="text" name="fullName" id="fullName<%= da.id %>" style="display:none" value="<%= da.fullName %>"></input>
             </td>
             <td>

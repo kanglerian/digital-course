@@ -30,7 +30,7 @@
           <% if(course.status == 0 && user.status == 0){ %>
             <button disabled>Masuk kelas</button>
           <% } else { %>
-            <a href="/course/detail/<%= course.id %>"><button>Masuk kelas</button></a>
+            <a href="/course/detail/<%= course.idCourse %>"><button>Masuk kelas</button></a>
           <% } %>
           <form onsubmit="return confirm(`Apakah kamu yakin akan menghapus kelas <%= course.Course.nameCourse%>?`)"
             method="POST" action="/course?_method=DELETE" style="display:inline">

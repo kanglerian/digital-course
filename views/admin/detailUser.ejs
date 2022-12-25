@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <style>
+    table,
+    tr,
+    th,
+    td {
+      border: 1px solid black;
+      padding: 3px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <a href="/dashboard/users">kembali</a>
+  </div>
+  <h1>
+    <%= title %>
+  </h1>
+  <p>Selamat datang, <%= user.fullName %>
+  </p>
+  <p>Ini daftar course yang <%= uses.fullName == user.fullName ? 'kamu' : uses.fullName %> miliki:</p>
+  <div style="margin-top: 10px">
+    <% if(courses.length > 0) { %>
+      <table>
+        <tr>
+          <th>No.</th>
+          <th>Nama Course</th>
+          <th>Status</th>
+          <th>#</th>
+        </tr>
+        <% courses.forEach((da, i)=> { %>
+          <tr>
+            <td>
+              <%= i+1 %>
+            </td>
+            <td><%= da.Course.nameCourse %></td>
+            <td><%= da.status == true ? 'aktif' : 'tidak aktif' %></td>
+            <td>
+              <form action="/dashboard/users/course/<%= da.id %>?_method=PATCH" method="POST" style="display: inline;">
+                <input type="hidden" name="status" value="<%= da.status == true ? 0 : 1 %>">
+                <button type="submit"><%= da.status == true ? 'tidak aktif' : 'aktif' %></button>
+              </form>
+            </td>
+          </tr>
+          <% }); %>
+      </table>
+      <% } %>
+  </div>
+</body>
+
+</html>

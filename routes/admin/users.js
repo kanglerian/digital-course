@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 
-const { User, myCourse } = require('../../models');
+const { User, myCourse, Course } = require('../../models');
 
 router.get('/', async (req, res) => {
     const session_store = req.session;
@@ -9,6 +9,30 @@ router.get('/', async (req, res) => {
     res.render('admin/users', {
         title: 'Digital Course',
         data: users,
+        user: session_store,
+        url: req.url
+    });
+});
+
+router.get('/detail/:id', async (req, res) => {
+    const session_store = req.session;
+    const users = await User.findOne({
+        where: {
+            id: req.params.id
+        }
+    });
+    const courses = await myCourse.findAll({
+        where: {
+            idUser: req.params.id
+        },
+        include: [
+            { model: Course, as: 'Course' }
+        ],
+    });
+    res.render('admin/detailUser', {
+        title: 'Digital Course',
+        uses: users,
+        courses: courses,
         user: session_store,
         url: req.url
     });
@@ -39,6 +63,19 @@ router.patch('/:id', async (req, res) => {
             }
         });
         return res.redirect('/dashboard/users');
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+router.patch('/course/:id', async (req, res) => {
+    try {
+        await myCourse.update(req.body,{
+            where: {
+                id: req.params.id
+            }
+        });
+        return res.redirect('back');
     } catch (error) {
         console.log(error);
     }
