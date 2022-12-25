@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 
-const { User } = require('../../models');
+const { User, myCourse } = require('../../models');
 
 router.get('/', async (req, res) => {
     const session_store = req.session;
@@ -56,6 +56,11 @@ router.delete('/', async (req, res) => {
     await User.destroy({
         where: {
             id: req.body.id
+        }
+    });
+    await myCourse.destroy({
+        where: {
+            idUser: req.body.id
         }
     });
     return res.redirect('back');

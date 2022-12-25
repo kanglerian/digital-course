@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <style>
+      table,
+      tr,
+      th,
+      td {
+        border: 1px solid black;
+        padding: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <a href="/dashboard/courses">kembali</a>
+    </div>
+    <h1><%= title %></h1>
+    <p>Selamat datang, <%= user.fullName %></p>
+    <h4>Judul: <%= course.nameCourse %></h4>
+    <button onclick="toggle()">Tambah</button>
+    <div style="margin-top: 5px; display: none" id="add-form">
+      <form action="/dashboard/courses/detail" method="POST">
+        <input type="hidden" name="idCourse" value="<%= course.id %>"/>
+        <input
+          type="text"
+          name="title"
+          placeholder="Title learning in here.."
+        />
+        <input
+          type="text"
+          name="link"
+          placeholder="Link learning in here.."
+        />
+        <input
+          type="text"
+          name="caption"
+          placeholder="Caption in here.."
+        />
+        <button type="submit">Simpan</button>
+      </form>
+    </div>
+    <div style="margin-top: 10px">
+      <table>
+        <tr>
+          <th>No</th>
+          <th>Judul</th>
+          <th>Caption</th>
+          <th colspan="2">#</th>
+        </tr>
+        <% if(data.length > 0) { %> <% data.forEach((det, i)=> { %>
+        <tr>
+          <td><%= i+ 1 %></td>
+          <form action="/dashboard/courses/detail/<%= det.id %>?_method=PATCH" method="POST">
+          <td>
+            <span id="titleLabel<%= det.id %>" style="display:block"><%= det.title %></span>
+            <input type="text" name="title" id="title<%= det.id %>"style="display:none" value="<%= det.title %>"/>
+          </td>
+          <td>
+            <span id="captionLabel<%= det.id %>" style="display:block"><%= det.caption %></span>
+            <input type="text" name="caption" id="caption<%= det.id %>"style="display:none" value="<%= det.caption %>"/>
+          </td>
+          <td id="link<%= det.id %>" style="display:none">  
+            <input type="text" name="link" value="<%= det.link %>"/>
+          </td>
+          <td>
+            <a href="<%= det.link %>" id="linkLabel<%= det.id %>" style="display:inline" ><button>tonton</button></a>
+            <button type="submit" style="display:none" id="buttonCourse<%= det.id %>">Simpan</button>
+            </form>
+            <button type="button" onclick="toggleEdit(`<%= det.id %>`)">Edit</button>
+            <form onsubmit="return confirm(`Apakah kamu yakin akan menghapus video <%= det.title %>?`)" action="/dashboard/courses/detail?_method=DELETE" method="POST" style="display:inline">
+              <input type="hidden" name="id" value="<%= det.id %>">
+              <button type="submit">hapus</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %> <% } else { %>
+        <tr>
+          <td colspan="5">Belum ada video pembelajaran.</td>
+        </tr>
+        <% } %>
+      </table>
+    </div>
+    <script>
+      const toggle = () => {
+        let formAdd = document.getElementById("add-form");
+        if (formAdd.style.display == "block") {
+          formAdd.style.display = "none";
+        } else {
+          formAdd.style.display = "block";
+        }
+      };
+    const toggleEdit = (da) => {
+      let title = document.getElementById(`title${da}`);
+      let titleLabel = document.getElementById(`titleLabel${da}`);
+      let caption = document.getElementById(`caption${da}`);
+      let captionLabel = document.getElementById(`captionLabel${da}`);
+      let link = document.getElementById(`link${da}`);
+      let linkLabel = document.getElementById(`linkLabel${da}`);
+      let buttonCourse = document.getElementById(`buttonCourse${da}`);
+      if(title.style.display == "none"){
+        title.style.display = "block";
+        titleLabel.style.display = "none";
+        caption.style.display = "block";
+        captionLabel.style.display = "none";
+        link.style.display = "block";
+        linkLabel.style.display = "none";
+        buttonCourse.style.display = "inline";
+      }else{
+        title.style.display = "none";
+        titleLabel.style.display = "block";
+        caption.style.display = "none";
+        captionLabel.style.display = "block";
+        link.style.display = "none";
+        linkLabel.style.display = "inline";
+        buttonCourse.style.display = "none";
+      }
+    }
+    </script>
+  </body>
+</html>

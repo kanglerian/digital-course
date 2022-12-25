@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 
-const { myCourse, Course } = require('../../models');
+const { myCourse, Course, detailCourse } = require('../../models');
 
 router.get('/:id', async (req, res) => {
     const session_store = req.session;
@@ -18,6 +18,26 @@ router.get('/:id', async (req, res) => {
         courses: myCourses,
         user: session_store,
         url: req.url
+    });
+});
+
+router.get('/detail/:id', async (req, res) => {
+    const session_store = req.session;
+    const course = await Course.findOne({
+        where: {
+            id: req.params.id
+        }
+    });
+    const detail = await detailCourse.findAll({
+        where: {
+            idCourse: req.params.id
+        }
+    });
+    res.render('kelas/detailKelas', {
+        title: 'Digital Course',
+        course: course,
+        data: detail,
+        user: session_store
     });
 });
 

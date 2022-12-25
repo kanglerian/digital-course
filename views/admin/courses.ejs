@@ -57,7 +57,7 @@
             </td>
             <form action="/dashboard/courses/<%= da.id %>?_method=PATCH" method="POST">
             <td>
-              <span id="nameCourseLabel<%= da.id %>" style="display:block"><%= da.nameCourse %></span>
+              <span id="nameCourseLabel<%= da.id %>" style="display:block"><a style="text-decoration: none;color:black" href="/dashboard/courses/<%= da.id %>"><%= da.nameCourse %></a></span>
               <input type="text" name="nameCourse" id="nameCourse<%= da.id %>" style="display:none" value="<%= da.nameCourse %>"></input>
             </td>
             <td>
@@ -112,7 +112,7 @@
         priceCourseLabel.style.display = "none";
         statusCourse.style.display = "block";
         statusCourseLabel.style.display = "none";
-        buttonCourse.style.display = "block";
+        buttonCourse.style.display = "inline";
       }else{
         nameCourse.style.display = "none";
         nameCourseLabel.style.display = "block";

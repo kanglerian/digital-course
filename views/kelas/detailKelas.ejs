@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <style>
+      table,
+      tr,
+      th,
+      td {
+        border: 1px solid black;
+        padding: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <a href="/course/<%= user.no_id %>">kembali</a>
+    </div>
+    <h1><%= title %></h1>
+    <p>Selamat datang, <%= user.fullName %></p>
+    <h4>Judul: <%= course.nameCourse %></h4>
+    <div style="margin-top: 10px">
+      <table>
+        <tr>
+          <th>No</th>
+          <th>Judul</th>
+          <th>Caption</th>
+          <th colspan="2">#</th>
+        </tr>
+        <% if(data.length > 0) { %> <% data.forEach((det, i)=> { %>
+        <tr>
+          <td><%= i+ 1 %></td>
+          <td><%= det.title %></td>
+          <td><%= det.caption %></td>
+          <td>
+            <a href="<%= det.link %>" ><button>tonton</button></a>
+          </td>
+        </tr>
+        <% }) %> <% } else { %>
+        <tr>
+          <td colspan="5">Belum ada video pembelajaran.</td>
+        </tr>
+        <% } %>
+      </table>
+    </div>
+  </body>
+</html>
