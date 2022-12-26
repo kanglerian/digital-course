@@ -21,6 +21,13 @@
     <h1><%= title %></h1>
     <p>Selamat datang, <%= user.fullName %></p>
     <h4>Judul: <%= course.nameCourse %></h4>
+    <% if(data.length > 0){ %>
+    <% for (let i = 0; i < 1; i++) { %>
+      <div style="margin-top: 10px">
+        <iframe width="560" id="video" height="315" src="https://www.youtube.com/embed/<%= data[0].link %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    <% } %>
+    <% } %>
     <div style="margin-top: 10px">
       <table>
         <tr>
@@ -35,7 +42,7 @@
           <td><%= det.title %></td>
           <td><%= det.caption %></td>
           <td>
-            <a href="<%= det.link %>" ><button>tonton</button></a>
+            <button type="button" onclick="changeVideo(`<%= det.link %>`)">tonton</button>
           </td>
         </tr>
         <% }) %> <% } else { %>
@@ -45,5 +52,11 @@
         <% } %>
       </table>
     </div>
+    <script>
+      const changeVideo = (da) => {
+        let videoFrame = document.getElementById('video');
+        videoFrame.src = `https://www.youtube.com/embed/${da}`;
+      }
+    </script>
   </body>
 </html>

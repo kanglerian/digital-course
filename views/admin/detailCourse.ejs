@@ -21,6 +21,13 @@
     <h1><%= title %></h1>
     <p>Selamat datang, <%= user.fullName %></p>
     <h4>Judul: <%= course.nameCourse %></h4>
+    <% if(data.length > 0){ %>
+    <% for (let i = 0; i < 1; i++) { %>
+      <div style="margin: 10px 0px">
+        <iframe width="560" id="video" height="315" src="https://www.youtube.com/embed/<%= data[0].link %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    <% } %>
+    <% } %>
     <button onclick="toggle()">Tambah</button>
     <div style="margin-top: 5px; display: none" id="add-form">
       <form action="/dashboard/courses/detail" method="POST">
@@ -33,7 +40,7 @@
         <input
           type="text"
           name="link"
-          placeholder="Link learning in here.."
+          placeholder="Embed link youtube.."
         />
         <input
           type="text"
@@ -64,10 +71,10 @@
             <input type="text" name="caption" id="caption<%= det.id %>"style="display:none" value="<%= det.caption %>"/>
           </td>
           <td id="link<%= det.id %>" style="display:none">  
-            <input type="text" name="link" value="<%= det.link %>"/>
+            <input type="text" name="embed link youtube.." value="<%= det.link %>"/>
           </td>
           <td>
-            <a href="<%= det.link %>" id="linkLabel<%= det.id %>" style="display:inline" ><button>tonton</button></a>
+            <button type="button" onclick="changeVideo(`<%= det.link %>`)" id="linkLabel<%= det.id %>">tonton</button>
             <button type="submit" style="display:none" id="buttonCourse<%= det.id %>">Simpan</button>
             </form>
             <button type="button" onclick="toggleEdit(`<%= det.id %>`)">Edit</button>
@@ -119,6 +126,12 @@
         buttonCourse.style.display = "none";
       }
     }
+    </script>
+    <script>
+      const changeVideo = (da) => {
+        let videoFrame = document.getElementById('video');
+        videoFrame.src = `https://www.youtube.com/embed/${da}`;
+      }
     </script>
   </body>
 </html>

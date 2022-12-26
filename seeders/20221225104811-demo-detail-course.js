@@ -7,21 +7,21 @@ module.exports = {
       {
         idCourse: 1,
         title: 'Pengenalan Coding',
-        link: 'https://facebook.com',
+        link: '12TuC1sUXxM',
         caption: 'Lorem ipsum',
         createdAt: new Date(),
         updatedAt: new Date()
       },{
         idCourse: 1,
         title: 'Install IDE',
-        link: 'https://facebook.com',
+        link: 'M1l3ir5tsPs',
         caption: 'Lorem ipsum',
         createdAt: new Date(),
         updatedAt: new Date()
       },{
         idCourse: 1,
         title: 'Pilih Bahasa Pemrograman',
-        link: 'https://facebook.com',
+        link: 'rpMcUzQnvDs',
         caption: 'Lorem ipsum',
         createdAt: new Date(),
         updatedAt: new Date()
