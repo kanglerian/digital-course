@@ -64,7 +64,21 @@
 
 <!-- Content Row -->
 <div class="row justify-content-center mb-4">
-  <div class="col-md-6">
+  <div class="col-md-7">
+    <div class="card">
+      <div class="card-body">
+        <div class="embed-responsive embed-responsive-16by9">
+          <% for (let i = 0; i < 1; i++) { %>
+          <iframe class="embed-responsive-item" id="video" src="https://www.youtube.com/embed/<%= data[0].link %>"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5">
     <% if(data.length > 0) { %>
     <% data.forEach(det => { %>
       <div onclick="changeVideo(`<%= det.link %>`)" class="card border-left-primary shadow my-2">
@@ -82,20 +96,6 @@
     <% } else { %>
     <p>Kamu belum punya kelas, <a href="/">Beli disini sekarang</a></p>
     <% } %>
-  </div>
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body">
-        <div class="embed-responsive embed-responsive-16by9">
-          <% for (let i = 0; i < 1; i++) { %>
-          <iframe class="embed-responsive-item" id="video" src="https://www.youtube.com/embed/<%= data[0].link %>"
-            title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-          <% } %>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 <script>
