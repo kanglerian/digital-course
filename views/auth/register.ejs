@@ -1,30 +1,34 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <div>
-      <h1><a href="/" style="text-decoration: none;color:black"><%= title %></a></h1>
-      <p>Welcome to <%= title %>, buat akun baru disini:</p>
-      <div>
-        <form action="/auth/register" method="POST">
-          <div style="margin-bottom:5px">
-            <label>Fullname:</label>
-            <input type="text" name="fullName" placeholder="Your fullname in here.." required>
-          </div>
-          <div style="margin-bottom:5px">
-            <label>Email:</label>
-            <input type="email" name="email" placeholder="Your email in here.." required>
-          </div>
-          <div style="margin-bottom:10px">
-            <label>Password:</label>
-            <input type="password" name="password" placeholder="Your password in here.." required>
-          </div>
-          <button type="submit" style="margin-right:10px">Daftar</button><a href="/auth">Sudah punya akun</a>
-        </form>
-      </div>
+<div class="col-lg-6">
+  <div class="p-5">
+    <div class="text-center">
+      <a href="/" style="text-decoration: none;"><h1 class="h4 text-gray-900"><b><%= title %></b></h1></a>
+      <p class="text-gray-600">Create new account in here:</p>
     </div>
-  </body>
-</html>
+    <form class="user" action="/auth/register" method="POST">
+      <div class="form-group">
+        <input type="text" name="fullName" class="form-control form-control-user" placeholder="First Name">
+      </div>
+      <div class="form-group">
+        <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <input type="password" name="password" class="form-control form-control-user" placeholder="Password">
+        </div>
+        <div class="col-sm-6">
+          <input type="password" name="checkPassword" class="form-control form-control-user" placeholder="Repeat Password">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-user btn-block">
+        Register Account
+      </button>
+    </form>
+    <hr>
+    <!-- <div class="text-center">
+          <a class="small" href="forgot-password.html">Forgot Password?</a>
+      </div> -->
+    <div class="text-center">
+      <a class="small" href="/auth">Already have an account? Login!</a>
+    </div>
+  </div>
+</div>

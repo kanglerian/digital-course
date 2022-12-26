@@ -5,12 +5,14 @@ const { User } = require('../../models');
 
 router.get('/', async(req, res) => {
   res.render('auth/login', {
+    layout: 'layouts/dashboard',
     title: 'Digital Course',
   });
 });
 
 router.get('/register', async(req, res) => {
   res.render('auth/register', {
+    layout: 'layouts/dashboard',
     title: 'Digital Course',
   });
 });
@@ -38,6 +40,9 @@ router.post('/login', async (req,res) => {
 
 router.post('/register', async (req, res) => {
   if(req.body.fullName == '' | req.body.email == '' | req.body.password == ''){
+    return res.redirect('back');
+  }
+  if(req.body.password != req.body.checkPassword){
     return res.redirect('back');
   }
   const checkEmail = await User.findOne({

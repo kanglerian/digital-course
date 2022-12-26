@@ -1,26 +1,33 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <div>
-      <h1><a href="/" style="text-decoration: none;color:black"><%= title %></a></h1>
-      <p>Welcome to <%= title %>, masuk disini:</p>
-      <div>
-        <form action="/auth/login" method="POST">
-          <div style="margin-bottom:5px">
-            <label>Email:</label>
-            <input type="email" name="email" placeholder="Your email in here.." required>
-          </div>
-          <div style="margin-bottom:10px">
-            <label>Password:</label>
-            <input type="password" name="password" placeholder="Your password in here.." required>
-          </div>
-          <button type="submit" style="margin-right:10px">Masuk</button><a href="/auth/register">Belum punya akun</a>
-        </form>
-      </div>
+<div class="col-lg-6">
+  <div class="p-5">
+    <div class="text-center">
+      <a href="/" style="text-decoration: none;"><h1 class="h4 text-gray-900"><b><%= title %></b></h1></a>
+      <p class="text-gray-600">Welcome, let's learning!</p>
     </div>
-  </body>
-</html>
+    <form class="user" action="/auth/login" method="POST">
+      <div class="form-group">
+        <input type="email" name="email" class="form-control form-control-user" placeholder="Enter Email Address...">
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" class="form-control form-control-user" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <div class="custom-control custom-checkbox small">
+          <input type="checkbox" class="custom-control-input" id="customCheck">
+          <label class="custom-control-label" for="customCheck">Remember
+            Me</label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-user btn-block">
+        Login
+      </button>
+    </form>
+    <hr>
+    <!-- <div class="text-center">
+      <a class="small" href="forgot-password.html">Forgot Password?</a>
+    </div> -->
+    <div class="text-center">
+      <a class="small" href="/auth/register">Create an Account!</a>
+    </div>
+  </div>
+</div>

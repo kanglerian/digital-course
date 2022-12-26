@@ -11,7 +11,8 @@ router.get('/', async(req, res) => {
       status: 1
     }
   }); 
-  res.render('index', {
+  res.render('pages/home', {
+    layout: 'layouts/home',
     title: 'Digital Course',
     courses: courses,
     user: session_store
