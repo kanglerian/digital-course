@@ -18,7 +18,7 @@ router.get('/:id', async (req, res) => {
         title: 'Digital Course',
         courses: myCourses,
         user: session_store,
-        url: req.url
+        url: req.originalUrl
     });
 });
 
@@ -35,10 +35,12 @@ router.get('/detail/:id', async (req, res) => {
         }
     });
     res.render('kelas/detailKelas', {
+        layout: 'layouts/dashboard',
         title: 'Digital Course',
         course: course,
         data: detail,
-        user: session_store
+        user: session_store,
+        url: req.originalUrl
     });
 });
 

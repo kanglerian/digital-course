@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <title><%= title %></title>
@@ -52,11 +52,55 @@
         <% } %>
       </table>
     </div>
-    <script>
-      const changeVideo = (da) => {
-        let videoFrame = document.getElementById('video');
-        videoFrame.src = `https://www.youtube.com/embed/${da}`;
-      }
-    </script>
   </body>
-</html>
+</html> -->
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800"><b>
+      <%= course.nameCourse %>
+    </b></h1>
+</div>
+
+
+<!-- Content Row -->
+<div class="row justify-content-center mb-4">
+  <div class="col-md-6">
+    <% if(data.length > 0) { %>
+    <% data.forEach(det => { %>
+      <div onclick="changeVideo(`<%= det.link %>`)" class="card border-left-primary shadow my-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <span class="font-weight-bold">
+                <%= det.title %>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }); %>
+    <% } else { %>
+    <p>Kamu belum punya kelas, <a href="/">Beli disini sekarang</a></p>
+    <% } %>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="embed-responsive embed-responsive-16by9">
+          <% for (let i = 0; i < 1; i++) { %>
+          <iframe class="embed-responsive-item" id="video" src="https://www.youtube.com/embed/<%= data[0].link %>"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const changeVideo = (da) => {
+    let videoFrame = document.getElementById('video');
+    videoFrame.src = `https://www.youtube.com/embed/${da}`;
+  }
+</script>

@@ -36,7 +36,7 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/dashboard/users', setUsersRouter);
 app.use('/dashboard/courses', setCourseRouter);
-app.use('/course', auth.checkLogin, courseRouter);
+app.use('/course', courseRouter);
 app.use('/api/courses', coursesApiRouter);
 app.use('/api/users', usersApiRouter);
 
