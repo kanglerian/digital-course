@@ -1,52 +1,37 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>
-    <%= title %>
-  </title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body>
-  <div>
-    <a href="/">kembali</a>
-  </div>
-  <h1>
-    <%= title %>
-  </h1>
-  <p>Selamat datang, <%= user.fullName %>
-  </p>
-  <div>
-    <% if(url==`/`+ user.no_id) { %>
-      <% if(courses.length > 0) { %>
-        <p>Ayo semangat belajarnya, kamu telah memiliki beberapa kelas aktif!</p>
-        <% courses.forEach(course=> { %>
-        <div style="float:left;margin:5px;padding:10px;text-align:center;width:200px;border:1px solid black">
-          <div style="background-color: #333333;width:100%;height:50px"></div>
-          <h5>
-            <%= course.Course.nameCourse %>
-          </h5>
-          <% if(course.status == 0 && user.status == 0){ %>
-            <button disabled>Masuk kelas</button>
-          <% } else { %>
-            <a href="/course/detail/<%= course.idCourse %>"><button>Masuk kelas</button></a>
-          <% } %>
-          <form onsubmit="return confirm(`Apakah kamu yakin akan menghapus kelas <%= course.Course.nameCourse%>?`)"
-            method="POST" action="/course?_method=DELETE" style="display:inline">
-            <input type="hidden" name="idUser" value="<%= user.no_id %>">
-            <input type="hidden" name="id" value="<%= course.id %>">
-            <button type="submit">hapus</but>
-          </form>
-        </div>
-        <% }); %>
-      <% } else { %>
-        <p>Kamu belum punya kelas, <a href="/">Beli disini sekarang</a></p>
-      <% } %>
+<div>
+  <a href="/">kembali</a>
+</div>
+<h1>
+  <%= title %>
+</h1>
+<p>Selamat datang, <%= user.fullName %>
+</p>
+<div>
+  <% if(url==`/`+ user.no_id) { %>
+  <% if(courses.length > 0) { %>
+  <p>Ayo semangat belajarnya, kamu telah memiliki beberapa kelas aktif!</p>
+  <% courses.forEach(course=> { %>
+  <div style="float:left;margin:5px;padding:10px;text-align:center;width:200px;border:1px solid black">
+    <div style="background-color: #333333;width:100%;height:50px"></div>
+    <h5>
+      <%= course.Course.nameCourse %>
+    </h5>
+    <% if(course.status == 0 && user.status == 0){ %>
+    <button disabled>Masuk kelas</button>
     <% } else { %>
-      <p>Forbidden</p>
+    <a href="/course/detail/<%= course.idCourse %>"><button>Masuk kelas</button></a>
     <% } %>
+    <form onsubmit="return confirm(`Apakah kamu yakin akan menghapus kelas <%= course.Course.nameCourse%>?`)" method="POST" action="/course?_method=DELETE" style="display:inline">
+      <input type="hidden" name="idUser" value="<%= user.no_id %>">
+      <input type="hidden" name="id" value="<%= course.id %>">
+      <button type="submit">hapus</but>
+    </form>
   </div>
-</body>
-
-</html>
+  <% }); %>
+  <% } else { %>
+  <p>Kamu belum punya kelas, <a href="/">Beli disini sekarang</a></p>
+  <% } %>
+  <% } else { %>
+  <p>Forbidden</p>
+  <% } %>
+</div>

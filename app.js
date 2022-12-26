@@ -34,8 +34,8 @@ app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
-app.use('/dashboard/users', auth.checkLogin, auth.checkStatus, setUsersRouter);
-app.use('/dashboard/courses', auth.checkLogin, auth.checkStatus, setCourseRouter);
+app.use('/dashboard/users', setUsersRouter);
+app.use('/dashboard/courses', setCourseRouter);
 app.use('/course', auth.checkLogin, courseRouter);
 app.use('/api/courses', coursesApiRouter);
 app.use('/api/users', usersApiRouter);

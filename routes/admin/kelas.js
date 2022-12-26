@@ -14,6 +14,7 @@ router.get('/:id', async (req, res) => {
         }
     });
     res.render('kelas/kelasku', {
+        layout: 'layouts/dashboard',
         title: 'Digital Course',
         courses: myCourses,
         user: session_store,

@@ -5,14 +5,14 @@ const { User } = require('../../models');
 
 router.get('/', async(req, res) => {
   res.render('auth/login', {
-    layout: 'layouts/dashboard',
+    layout: 'layouts/auth',
     title: 'Digital Course',
   });
 });
 
 router.get('/register', async(req, res) => {
   res.render('auth/register', {
-    layout: 'layouts/dashboard',
+    layout: 'layouts/auth',
     title: 'Digital Course',
   });
 });
