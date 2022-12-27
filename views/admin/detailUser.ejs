@@ -19,20 +19,20 @@
 
 <body>
   <div>
-    <a href="/dashboard/users">kembali</a>
+    <a href="/dashboard/users">back</a>
   </div>
   <h1>
     <%= title %>
   </h1>
-  <p>Selamat datang, <%= user.fullName %>
+  <p>Welcome, <%= user.fullName %>
   </p>
-  <p>Ini daftar course yang <%= uses.fullName == user.fullName ? 'kamu' : uses.fullName %> miliki:</p>
+  <p>This is a list of courses that <%= uses.fullName == user.fullName ? 'kamu' : uses.fullName %>  owned:</p>
   <div style="margin-top: 10px">
     <% if(courses.length > 0) { %>
       <table>
         <tr>
           <th>No.</th>
-          <th>Nama Course</th>
+          <th>Name Course</th>
           <th>Status</th>
           <th>#</th>
         </tr>
@@ -42,11 +42,11 @@
               <%= i+1 %>
             </td>
             <td><%= da.Course.nameCourse %></td>
-            <td><%= da.status == true ? 'aktif' : 'tidak aktif' %></td>
+            <td><%= da.status == true ? 'active' : 'not active' %></td>
             <td>
               <form action="/dashboard/users/course/<%= da.id %>?_method=PATCH" method="POST" style="display: inline;">
                 <input type="hidden" name="status" value="<%= da.status == true ? 0 : 1 %>">
-                <button type="submit"><%= da.status == true ? 'tidak aktif' : 'aktif' %></button>
+                <button type="submit"><%= da.status == true ? 'not active' : 'active' %></button>
               </form>
             </td>
           </tr>
