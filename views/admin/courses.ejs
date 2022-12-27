@@ -24,20 +24,20 @@
   <h1>
     <%= title %>
   </h1>
-  <p>Selamat datang, <%= user.fullName %>
+  <p>Welcome, <%= user.fullName %>
   </p>
-  <p>Ini daftar kelas yang ada di Digital Course:</p>
-  <button onclick="toggle()">Tambah</button>
+  <p>This is a list of classes in the Digital Course:</p>
+  <button onclick="toggle()">Add</button>
   <div style="margin-top: 5px;display: none" id="add-form">
     <form action="/dashboard/courses" method="POST">
       <input type="text" name="nameCourse" placeholder="Name Course in here.." />
       <input type="text" name="price" placeholder="Rp0" />
       <select name="status">
-        <option>Pilih</option>
-        <option value="0">Tidak aktif</option>
-        <option value="1">Aktif</option>
+        <option>Choose</option>
+        <option value="0">not active</option>
+        <option value="1">active</option>
       </select>
-      <button type="submit">Simpan</button>
+      <button type="submit">save</button>
     </form>
   </div>
   <div style="margin-top: 10px">
@@ -66,21 +66,21 @@
             </td>
             <td>
               <span id="statusCourseLabel<%= da.id %>" style="display:block">
-                <%= da.status == true ? 'aktif' : 'tidak aktif' %>
+                <%= da.status == true ? 'active' : 'not active' %>
               </span>
               <select name="status" style="display:none" id="statusCourse<%= da.id %>">
-                <option value="<%= da.status %>"><%= da.status == true ? 'aktif' : 'tidak aktif' %></option>
-                <option value="<%= da.status == true ? 0 : 1 %>"><%= da.status == true ? 'tidak aktif' : 'aktif' %></option>
+                <option value="<%= da.status %>"><%= da.status == true ? 'active' : 'not active' %></option>
+                <option value="<%= da.status == true ? 0 : 1 %>"><%= da.status == true ? 'not active' : 'active' %></option>
               </select>
             </td>
             <td>
-              <button type="submit" style="display:none" id="buttonCourse<%= da.id %>">Simpan</button>
+              <button type="submit" style="display:none" id="buttonCourse<%= da.id %>">save</button>
             </form>
-              <button type="button" onclick="toggleEdit(`<%= da.id %>`)">Edit</button>
-              <form onsubmit="return confirm(`Apakah kamu yakin akan menghapus kelas <%= da.nameCourse %>?`)"
+              <button type="button" onclick="toggleEdit(`<%= da.id %>`)">edit</button>
+              <form onsubmit="return confirm(`Are you sure you want to delete class <%= da.nameCourse %>?`)"
                 method="POST" action="/dashboard/courses?_method=DELETE" style="display:inline">
                 <input type="hidden" name="id" value="<%= da.id %>">
-                <button type="submit">hapus</but>
+                <button type="submit">delete</but>
               </form>
             </td>
           </tr>

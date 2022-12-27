@@ -6,22 +6,22 @@ module.exports = {
     await queryInterface.bulkInsert('detailCourses', [
       {
         idCourse: 1,
-        title: 'Pengenalan Coding',
-        link: 'https://facebook.com',
+        title: 'Coding introduction',
+        link: '12TuC1sUXxM',
         caption: 'Lorem ipsum',
         createdAt: new Date(),
         updatedAt: new Date()
       },{
         idCourse: 1,
         title: 'Install IDE',
-        link: 'https://facebook.com',
+        link: 'M1l3ir5tsPs',
         caption: 'Lorem ipsum',
         createdAt: new Date(),
         updatedAt: new Date()
       },{
         idCourse: 1,
-        title: 'Pilih Bahasa Pemrograman',
-        link: 'https://facebook.com',
+        title: 'Select Programming Language',
+        link: 'rpMcUzQnvDs',
         caption: 'Lorem ipsum',
         createdAt: new Date(),
         updatedAt: new Date()

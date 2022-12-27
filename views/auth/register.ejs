@@ -7,7 +7,7 @@
   <body>
     <div>
       <h1><a href="/" style="text-decoration: none;color:black"><%= title %></a></h1>
-      <p>Welcome to <%= title %>, buat akun baru disini:</p>
+      <p>Welcome to <%= title %>, create a new account here:</p>
       <div>
         <form action="/auth/register" method="POST">
           <div style="margin-bottom:5px">
@@ -22,7 +22,7 @@
             <label>Password:</label>
             <input type="password" name="password" placeholder="Your password in here.." required>
           </div>
-          <button type="submit" style="margin-right:10px">Daftar</button><a href="/auth">Sudah punya akun</a>
+          <button type="submit" style="margin-right:10px">Sign Up</button><a href="/auth">Already have an account?</a>
         </form>
       </div>
     </div>

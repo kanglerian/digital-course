@@ -6,19 +6,19 @@ module.exports = {
 
     await queryInterface.bulkInsert('Courses', [
       {
-        nameCourse: '5 Hari Jago Bikin Website',
+        nameCourse: '5 Days of Advanced Website Making',
         price: 50000,
         status: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
       },{
-        nameCourse: 'Jago Ngiklan FB Ads',
+        nameCourse: 'Good at Advertising FB Ads',
         price: 35000,
         status: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
       },{
-        nameCourse: 'Jadi BackEnd Developer',
+        nameCourse: 'Become a Back End Developer',
         price: 40000,
         status: 0,
         createdAt: new Date(),

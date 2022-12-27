@@ -10,17 +10,17 @@
 
 <body>
   <div>
-    <a href="/">kembali</a>
+    <a href="/">back</a>
   </div>
   <h1>
     <%= title %>
   </h1>
-  <p>Selamat datang, <%= user.fullName %>
+  <p>Welcome, <%= user.fullName %>
   </p>
   <div>
     <% if(url==`/`+ user.no_id) { %>
       <% if(courses.length > 0) { %>
-        <p>Ayo semangat belajarnya, kamu telah memiliki beberapa kelas aktif!</p>
+        <p>Come on study hard, you already have several active classes!</p>
         <% courses.forEach(course=> { %>
         <div style="float:left;margin:5px;padding:10px;text-align:center;width:200px;border:1px solid black">
           <div style="background-color: #333333;width:100%;height:50px"></div>
@@ -28,20 +28,20 @@
             <%= course.Course.nameCourse %>
           </h5>
           <% if(course.status == 0 && user.status == 0){ %>
-            <button disabled>Masuk kelas</button>
+            <button disabled>Going to class</button>
           <% } else { %>
-            <a href="/course/detail/<%= course.idCourse %>"><button>Masuk kelas</button></a>
+            <a href="/course/detail/<%= course.idCourse %>"><button>Going to class</button></a>
           <% } %>
-          <form onsubmit="return confirm(`Apakah kamu yakin akan menghapus kelas <%= course.Course.nameCourse%>?`)"
+          <form onsubmit="return confirm(`Are you sure you want to delete class <%= course.Course.nameCourse%>?`)"
             method="POST" action="/course?_method=DELETE" style="display:inline">
             <input type="hidden" name="idUser" value="<%= user.no_id %>">
             <input type="hidden" name="id" value="<%= course.id %>">
-            <button type="submit">hapus</but>
+            <button type="submit">Remove</but>
           </form>
         </div>
         <% }); %>
       <% } else { %>
-        <p>Kamu belum punya kelas, <a href="/">Beli disini sekarang</a></p>
+        <p>You don't have class yet, <a href="/">Buy here now</a></p>
       <% } %>
     <% } else { %>
       <p>Forbidden</p>

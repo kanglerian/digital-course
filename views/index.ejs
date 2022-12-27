@@ -7,21 +7,21 @@
   <body>
     <div>
       <% if(user.fullName != null) { %>
-        <span>Selamat datang <b><%= user.fullName %></b>,</span>
-        <a href="/course/<%= user.no_id %>">Kelasku</a>,
+        <span>Welcome <b><%= user.fullName %></b>,</span>
+        <a href="/course/<%= user.no_id %>">My Class</a>,
         <% if(user.status == 1) { %>
-        <a href="/dashboard/users">Pengguna</a>,
+        <a href="/dashboard/users">Users</a>,
         <a href="/dashboard/courses">Courses</a>,
         <% } %>
         <a href="/auth/logout">Logout</a>
       <% } else { %>
-        <a href="/auth/register">Daftar</a>
+        <a href="/auth/register">Register</a>
         <a href="/auth">Login</a>
       <% } %>
     </div>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    <p>Ini adalah tempat bagi kamu mengembangkan bakat dibidang Digital. Ayo pilih kelas terbaikmu!</p>
+    <p>This is a place for you to develop talent in the digital field. Let's choose your best class!</p>
     <div>
         <% courses.forEach(course => { %>
           <div style="float:left;margin:5px;padding:10px;text-align:center;width:200px;border:1px solid black">
@@ -29,13 +29,13 @@
             <h5><%= course.nameCourse %></h5>
             <p>Rp<%= course.price.toLocaleString('id-ID') %></p>
             <% if(user.fullName != null) { %>
-              <form onsubmit="return confirm(`Apakah kamu yakin akan membeli kelas <%= course.nameCourse%>?`)" action="/course" method="POST">
+              <form onsubmit="return confirm(`Are you sure you want to buy a class <%= course.nameCourse%>?`)" action="/course" method="POST">
                 <input type="hidden" name="idCourse" value="<%= course.id %>">
                 <input type="hidden" name="idUser" value="<%= user.no_id %>">
-                <button type="submit">Beli sekarang</button>
+                <button type="submit">Buy now</button>
               </form>
             <% }else{ %>
-              <a href="/auth"><button>Beli sekarang</button></a>
+              <a href="/auth"><button>Buy now</button></a>
             <% } %>
           </div>
         <% }); %>

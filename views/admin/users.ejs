@@ -19,26 +19,26 @@
 
 <body>
   <div>
-    <a href="/">kembali</a>
+    <a href="/">back</a>
   </div>
   <h1>
     <%= title %>
   </h1>
-  <p>Selamat datang, <%= user.fullName %>
+  <p>Welcome, <%= user.fullName %>
   </p>
-  <p>Ini daftar pengguna yang ada di Digital Course:</p>
-  <button onclick="toggle()">Tambah</button>
+  <p>This is a list of users in the Digital Course:</p>
+  <button onclick="toggle()">Add</button>
   <div style="margin-top: 5px;display: none" id="add-form">
     <form action="/dashboard/users" method="POST">
       <input type="text" name="fullName" placeholder="Fullname in here.." />
       <input type="email" name="email" placeholder="Email in here.." />
       <input type="password" name="password" placeholder="Password in here.." />
       <select name="status">
-        <option>Pilih</option>
-        <option value="0">Siswa</option>
+        <option>Choose</option>
+        <option value="0">Student</option>
         <option value="1">Admin</option>
       </select>
-      <button type="submit">Simpan</button>
+      <button type="submit">save</button>
     </form>
   </div>
   <div style="margin-top: 10px">
@@ -72,21 +72,21 @@
             </td>
             <td>
               <span id="statusLabel<%= da.id %>" style="display:block">
-                <%= da.status == true ? 'admin' : 'siswa' %>
+                <%= da.status == true ? 'admin' : 'student' %>
               </span>
               <select name="status" style="display:none" id="status<%= da.id %>">
-                <option value="<%= da.status %>"><%= da.status == true ? 'admin' : 'siswa' %></option>
-                <option value="<%= da.status == true ? 0 : 1 %>"><%= da.status == true ? 'siswa' : 'admin' %></option>
+                <option value="<%= da.status %>"><%= da.status == true ? 'admin' : 'student' %></option>
+                <option value="<%= da.status == true ? 0 : 1 %>"><%= da.status == true ? 'student' : 'admin' %></option>
               </select>
             </td>
             <td>
-              <button type="submit" style="display:none" id="buttonUser<%= da.id %>">Simpan</button>
+              <button type="submit" style="display:none" id="buttonUser<%= da.id %>">save</button>
             </form>
-              <button type="button" onclick="toggleEdit(`<%= da.id %>`)">Edit</button>
+              <button type="button" onclick="toggleEdit(`<%= da.id %>`)">edit</button>
               <form onsubmit="return confirm(`Apakah kamu yakin akan menghapus pengguna <%= da.fullName %>?`)"
                 method="POST" action="/dashboard/users?_method=DELETE" style="display:inline">
                 <input type="hidden" name="id" value="<%= da.id %>">
-                <button type="submit">hapus</but>
+                <button type="submit">delete</but>
               </form>
             </td>
           </tr>
