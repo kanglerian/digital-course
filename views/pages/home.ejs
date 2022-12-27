@@ -5,18 +5,18 @@
     <div class="card h-100">
       <div class="card-body text-center">
         <img class="card-img-top mb-3" src="https://cdn-cas.orami.co.id/parenting/images/film-kamen-rider.width-800.jpegquality-80.jpg" alt="Card image cap">
-        <h5 class="card-title"><%= course.nameCourse %></h5>
+        <h6 class="card-title"><b><%= course.nameCourse %></b></h6>
         <p class="card-text">Rp<%= course.price.toLocaleString('id-ID') %></p>
       </div>
       <div class="card-footer text-center">
         <% if(user.fullName != null) { %>
-          <form onsubmit="return confirm(`Apakah kamu yakin akan membeli kelas <%= course.nameCourse%>?`)" action="/course" method="POST">
+          <form onsubmit="return confirm(`Are you sure you want to buy the class <%= course.nameCourse%>?`)" action="/course" method="POST">
             <input type="hidden" name="idCourse" value="<%= course.id %>">
             <input type="hidden" name="idUser" value="<%= user.no_id %>">
-            <button type="submit" class="btn btn-primary btn-sm">Beli sekarang</button>
+            <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-shopping-cart"></i> Buy now</button>
           </form>
         <% }else{ %>
-          <a href="/auth"><button class="btn btn-primary btn-sm">Beli sekarang</button></a>
+          <a href="/auth"><button class="btn btn-primary btn-sm"><i class="fas fa-shopping-cart"></i> Buy now</button></a>
         <% } %>
       </div>
     </div>

@@ -1,72 +1,13 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <style>
-      table,
-      tr,
-      th,
-      td {
-        border: 1px solid black;
-        padding: 3px;
-      }
-    </style>
-  </head>
-
-  <body>
-    <div>
-      <a href="/course/<%= user.no_id %>">kembali</a>
-    </div>
-    <h1><%= title %></h1>
-    <p>Selamat datang, <%= user.fullName %></p>
-    <h4>Judul: <%= course.nameCourse %></h4>
-    <% if(data.length > 0){ %>
-    <% for (let i = 0; i < 1; i++) { %>
-      <div style="margin-top: 10px">
-        <iframe width="560" id="video" height="315" src="https://www.youtube.com/embed/<%= data[0].link %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-    <% } %>
-    <% } %>
-    <div style="margin-top: 10px">
-      <table>
-        <tr>
-          <th>No</th>
-          <th>Judul</th>
-          <th>Caption</th>
-          <th colspan="2">#</th>
-        </tr>
-        <% if(data.length > 0) { %> <% data.forEach((det, i)=> { %>
-        <tr>
-          <td><%= i+ 1 %></td>
-          <td><%= det.title %></td>
-          <td><%= det.caption %></td>
-          <td>
-            <button type="button" onclick="changeVideo(`<%= det.link %>`)">tonton</button>
-          </td>
-        </tr>
-        <% }) %> <% } else { %>
-        <tr>
-          <td colspan="5">Belum ada video pembelajaran.</td>
-        </tr>
-        <% } %>
-      </table>
-    </div>
-  </body>
-</html> -->
-<!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0 text-gray-800"><b>
-      <%= course.nameCourse %>
-    </b></h1>
+  <a href="/course/<%= user.no_id %>" class="btn btn-primary btn-sm"><i class="fas fa-arrow-left"></i> back</a>
 </div>
 
 
 <!-- Content Row -->
-<div class="row justify-content-center mb-4">
+<div class="row justify-content-<%= data.length > 0 ? 'center' : 'left' %> mb-4">
+  <% if(data.length > 0) { %>
   <div class="col-md-7">
     <div class="card">
-      <div class="card-body">
         <div class="embed-responsive embed-responsive-16by9">
           <% for (let i = 0; i < 1; i++) { %>
           <iframe class="embed-responsive-item" id="video" src="https://www.youtube.com/embed/<%= data[0].link %>"
@@ -75,26 +16,22 @@
             allowfullscreen></iframe>
           <% } %>
         </div>
-      </div>
     </div>
   </div>
+  <% } %>
   <div class="col-md-5">
+    <h1 class="h4 mb-3 text-gray-800"><b>
+        <%= course.nameCourse %>
+    </b></h1>
+    <hr>
     <% if(data.length > 0) { %>
-    <% data.forEach(det => { %>
-      <div onclick="changeVideo(`<%= det.link %>`)" class="card border-left-primary shadow my-2">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <span class="font-weight-bold">
-                <%= det.title %>
-              </span>
-            </div>
-          </div>
-        </div>
+    <% data.forEach((det,i) => { %>
+      <div onclick="changeVideo(`<%= det.link %>`)" class="btn btn-primary btn-block text-left">
+        <span><%= i+1 %>. <%= det.title %></span>
       </div>
     <% }); %>
     <% } else { %>
-    <p>Kamu belum punya kelas, <a href="/">Beli disini sekarang</a></p>
+      <p>You don't have class yet, <a href="/" class="btn btn-primary btn-sm"><i class="fas fa-shopping-cart"></i> buy here now</a></p>
     <% } %>
   </div>
 </div>

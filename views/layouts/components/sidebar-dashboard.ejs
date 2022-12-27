@@ -4,7 +4,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+            <i class="fas fa-book"></i>
         </div>
         <div class="sidebar-brand-text mx-3">D-Course</div>
     </a>
@@ -13,10 +13,10 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item <%= url == `/course/` + user.no_id ? 'active' : '' %>">
-        <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>My Class</span></a>
+    <li class="nav-item <%= url == `/course/` + user.no_id ? 'active' : '' %> <%= url == `/course/detail/` + user.no_id ? 'active' : '' %>">
+        <a class="nav-link" href="/course/<%= user.no_id %>">
+            <i class="fas fa-chalkboard"></i>
+            <span>My Course</span></a>
     </li>
 
     <!-- Divider -->

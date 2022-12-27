@@ -14,14 +14,14 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-              Jumlah kelas
+              The number of classes
             </div>
             <div class="h5 mb-0 font-weight-bold text-gray-800">
               <%= courses.length %>
             </div>
           </div>
           <div class="col-auto">
-            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+            <i class="fas fa-chalkboard fa-2x text-gray-300""></i>
           </div>
         </div>
       </div>
@@ -40,32 +40,33 @@
     <div class="card shadow mb-4">
       <div class="card-body text-center">
         <div>
-          <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem"
-            src="../../admin/img/undraw_posting_photo.svg" alt="..." />
+          <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem" src="../../admin/img/undraw_posting_photo.svg" alt="..." />
         </div>
-        <h5 class="m-0 font-weight-bold py-3">
+        <h6 class="m-0 font-weight-bold py-3">
           <%= course.Course.nameCourse %>
-        </h5>
+        </h6>
         <% if(course.status==0 && user.status==0){ %>
-        <button class="btn btn-primary btn-sm disabled">Masuk kelas</button>
+        <button class="btn btn-primary btn-sm disabled">Going to class</button>
         <% } else { %>
-        <a class="btn btn-primary btn-sm" href="/course/detail/<%= course.idCourse %>">Masuk kelas</a>
+        <a class="btn btn-primary btn-sm" href="/course/detail/<%= course.idCourse %>">Going to class</a>
         <% } %>
-        <form onsubmit="return confirm(`Apakah kamu yakin akan menghapus kelas <%= course.Course.nameCourse%>?`)"
-          method="POST" action="/course?_method=DELETE" style="display:inline">
+        <form onsubmit="return confirm(`Are you sure you want to delete class <%= course.Course.nameCourse%>?`)" method="POST" action="/course?_method=DELETE" style="display:inline">
           <input type="hidden" name="idUser" value="<%= user.no_id %>">
           <input type="hidden" name="id" value="<%= course.id %>">
-          <button type="submit" class="btn btn-danger btn-sm">hapus</button>
+          <button type="submit" class="btn btn-danger btn-sm">remove</button>
         </form>
       </div>
     </div>
-
   </div>
   <% }); %>
   <% } else { %>
-  <p>Kamu belum punya kelas, <a href="/">Beli disini sekarang</a></p>
+  <div class="col-lg-12 mb-4">
+    <p>You don't have class yet, <a href="/" class="btn btn-primary btn-sm"><i class="fas fa-shopping-cart"></i> buy here now</a></p>
+  </div>
   <% } %>
   <% }else { %>
-  <p>Forbidden</p>
+  <div class="col-lg-12 mb-4">
+    <p>Forbidden.</p>
+  </div>
   <% } %>
 </div>

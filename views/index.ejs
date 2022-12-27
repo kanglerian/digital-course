@@ -29,13 +29,13 @@
             <h5><%= course.nameCourse %></h5>
             <p>Rp<%= course.price.toLocaleString('id-ID') %></p>
             <% if(user.fullName != null) { %>
-              <form onsubmit="return confirm(`Apakah kamu yakin akan membeli kelas <%= course.nameCourse%>?`)" action="/course" method="POST">
+              <form onsubmit="return confirm(`Are you sure you want to buy the class <%= course.nameCourse%>?`)" action="/course" method="POST">
                 <input type="hidden" name="idCourse" value="<%= course.id %>">
                 <input type="hidden" name="idUser" value="<%= user.no_id %>">
-                <button type="submit">Beli sekarang</button>
+                <button type="submit">Buy now</button>
               </form>
             <% }else{ %>
-              <a href="/auth"><button>Beli sekarang</button></a>
+              <a href="/auth"><button>Buy now</button></a>
             <% } %>
           </div>
         <% }); %>
